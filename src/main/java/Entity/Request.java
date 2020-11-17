@@ -8,7 +8,8 @@ import java.io.Serializable;
 @Getter
 @Setter
 public class Request<T> implements Serializable {
-    // 请求投票 //
+
+    //请求投票
     public static final int VOTE = 0;
 
     //附加日志

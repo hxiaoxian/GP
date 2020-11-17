@@ -8,6 +8,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 public class Param implements Serializable {
+
     //任期号
     public long term;
 

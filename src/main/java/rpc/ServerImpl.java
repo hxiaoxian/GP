@@ -20,7 +20,6 @@ public class ServerImpl implements Server {
     private volatile boolean flag;
 
     public ServerImpl(int port, NodeImpl node) {
-
         if (flag) {
             return;
         }
@@ -54,21 +53,22 @@ public class ServerImpl implements Server {
 
     @Override
     public Response handleRequestImpl(Request request) {
-        if (request.getType() == Request.VOTE) {
-            return new Response(node.handleRequestVote((VoteParam) request.getObject()));
-        } else if (request.getType() == Request.ENTRIES) {
-            return new Response(node.handleAppendEntries((EntryParam) request.getObject()));
-        } else if (request.getType() == Request.CLIENT_REQ) {
-            KVResponse kvResponse = node.handleClientRequest((KVRequest) request.getObject());
-            Response response = new Response(kvResponse);
-            response.setValue(kvResponse.getValue());
-            return response;
-        } else if (request.getType() == Request.CHANGE_CONFIG_REMOVE) {
-            return new Response(((NodeChange) node).removePeer((Peer) request.getObject()));
-        } else if (request.getType() == Request.CHANGE_CONFIG_ADD) {
-            return new Response(((NodeChange) node).addPeer((Peer) request.getObject()));
+        switch (request.getType()) {
+            case Request.VOTE:
+                return new Response(node.handleRequestVote((VoteParam) request.getObject()));
+            case Request.ENTRIES:
+                return new Response(node.handleAppendEntries((EntryParam) request.getObject()));
+            case Request.CLIENT_REQ:
+                KVResponse kvResponse = node.handleClientRequest((KVRequest) request.getObject());
+                Response response = new Response(kvResponse);
+                response.setValue(kvResponse.getValue());
+                return response;
+            case Request.CHANGE_CONFIG_REMOVE:
+                return new Response(((NodeChange) node).removePeer((Peer) request.getObject()));
+            case Request.CHANGE_CONFIG_ADD:
+                return new Response(((NodeChange) node).addPeer((Peer) request.getObject()));
+            default:
+                return null;
         }
-        return null;
-
     }
 }

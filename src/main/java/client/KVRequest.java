@@ -8,6 +8,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 public class KVRequest implements Serializable {
+
     public static int PUT = 0;
 
     public static int GET = 1;

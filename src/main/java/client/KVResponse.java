@@ -8,6 +8,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 public class KVResponse implements Serializable {
+
     Object response;
 
     String value;

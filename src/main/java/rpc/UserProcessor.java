@@ -7,8 +7,10 @@ import com.alipay.remoting.rpc.protocol.AbstractUserProcessor;
 
 public abstract class UserProcessor<T> extends AbstractUserProcessor<T> {
 
-    public void handleRequest(BizContext bizContext, AsyncContext asyncContext, T t) {
-
+    @Override
+    public void handleRequest(BizContext bizCtx, AsyncContext asyncCtx, T request) {
+        throw new RuntimeException(
+                "Raft Server not support handleRequest(BizContext bizCtx, AsyncContext asyncCtx, T request) ");
     }
 
     @Override

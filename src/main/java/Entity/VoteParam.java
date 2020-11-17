@@ -10,13 +10,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public class VoteParam extends Param {
-    //Candidate的Id(ip:selfPort)
+
     String candidateId;
 
-    //Candidate的最后日志条目的索引值
     long lastLogIndex;
 
-    //Candidate最后日志条目的任期号
     long lastLogTerm;
 
     public VoteParam() {

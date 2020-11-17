@@ -9,7 +9,9 @@ import java.io.Serializable;
 @Setter
 public class Response<T> implements Serializable {
     private T response;
+
     String value;
+
     public Response() {
     }
 

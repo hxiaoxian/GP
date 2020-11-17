@@ -11,6 +11,7 @@ import java.util.Objects;
 public class Command implements Serializable {
 
     private String key;
+
     private String value;
 
     public Command() {
